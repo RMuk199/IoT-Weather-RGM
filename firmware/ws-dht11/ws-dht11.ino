@@ -1,68 +1,49 @@
-/*
-*  Weather Station App
-*  CGS Semester 2
-*  Task 2
-*  Author: your name here
-*/
+#define sensor 26
+#define dhtSensor 33
 
-#include <math.h>
 #include <WiFi.h>
 #include <aREST.h>
 #include <DHT.h>
+#include <math.h>
 
-// DHT11 sensor pins
-#define DHTPIN 26
 #define DHTTYPE DHT11
 
-// Create aREST instance
-aREST rest = aREST();
+DHT dht(dhtSensor, DHTTYPE);
 
-// Initialize DHT sensor
-DHT dht(DHTPIN, DHTTYPE, 15);
-
-// WiFi parameters
 const char* ssid = "Proxima";
 const char* password = "centauri";
-//Static IP address configuration
-// P connections 
+
 #define LISTEN_PORT           80
 
-// Create an instance of the server
 WiFiServer server(LISTEN_PORT);
 
-// Variables to be exposed to the API
-float temperature;
-float humidity;
-char* location = "Al Fresco";
-int timer = 72000;
+aREST rest = aREST();
 
-// Declare functions to be exposed to the API
-int ledControl(String command);
+// Declare the variables for humidity and temperature
+float h = 0;
+float t= 0;
+int val = 0;
 
-void setup(void)
-{  
-  // Start Serial
-  Serial.begin(115200);
-  
-  // Init DHT 
+void setup() {
+  Serial.begin(9600);
+
   dht.begin();
-  
-  // Init variables and expose them to REST API
-  rest.variable("temperature",&temperature);
-  rest.variable("humidity",&humidity);
-  rest.variable("location",&location);
-    
-  // Give name and ID to device
-  rest.set_id("xxx");
-  rest.set_name("alpha-xxx");
+
+  rest.set_id("119");
+  rest.set_name("alpha-119");
+
+  // Expose the humidity and temperature variables to the REST API
+  rest.variable("humidity", &h);
+  rest.variable("temperature", &t);
+  rest.variable("water", &val);
   
   // Connect to WiFi
   WiFi.begin(ssid, password);
-  IPAddress ip(192, 168, 1, xxx); //set static ip
-  IPAddress gateway(192, 168, 1, 1); //set getteway
+  IPAddress ip(192, 168, 1, 119); //set static ip
+  IPAddress gateway(192, 168, 1, 1); //set gateway
   Serial.print(F("Setting static ip to : "));
   Serial.println(ip);
-  IPAddress subnet(255, 255, 255, 0);//set subnet
+  IPAddress subnet(255, 255, 255, 0); //set subnet
   WiFi.config(ip, gateway, subnet);
 
   
@@ -83,46 +64,47 @@ void setup(void)
 }
 
 void loop() {
-  
-  // Reading temperature and humidity
-  temperature = dht.readTemperature();
-  humidity = dht.readHumidity();
 
-  // Prints the temperature in celsius
-  Serial.print("Temperature: ");
-  Serial.println(temperature);
-  Serial.print("Humidity: ");
-  Serial.println(humidity);
-  Serial.print("Timer: ");
-  Serial.println(timer);
-  delay(5000);
-  timer--;
+  val = analogRead(sensor);
+  Serial.print("Analog Output: ");
+  Serial.print(val);
 
-  //Check running time and reset if expired
-  if (timer == 0 ) {
-    delay(3000);
-    Serial.println("Resetting..");
-    ESP.restart();
+  if (val == 4095) {
+    Serial.println("   Status: Dry");
+  } else {
+    Serial.println("   Status: Wet");
   }
+
+  // Update the humidity and temperature variables
+  h = dht.readHumidity();
+  t = dht.readTemperature();
+
+  Serial.print("Humidity: ");
+  Serial.println(h);
+  Serial.print("Temperature: ");
+  Serial.println(t);
+
   
-  // Handle REST calls
+
   WiFiClient client = server.available();
+
+  if (client.connected()){
+    Serial.print("0");
+  }
+
+  else{
+    Serial.print("1");
+  }
+
   if (!client) {
-    return;
+    delay(1000);
+     return;
   }
   while(!client.available()){
     delay(1);
   }
   rest.handle(client);
-  //Serial.println("called");
-}
 
-// Custom function accessible by the API
-int ledControl(String command) {
-
-  // Get state from command
-  int state = command.toInt();
-
-  digitalWrite(6,state);
-  return 1;
+  delay(5000);
+  
 }

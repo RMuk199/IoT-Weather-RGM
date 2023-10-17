@@ -1,36 +1,32 @@
+<div id="header">
+  <h1>IoT Weather Station</h1>
+</div>
 
-    <nav>
-      <p>Categories</p>
-      <li><a href="https://weather.com/en-AU/weather/today/l/ASXX0023:1:AS?Goto=Redirected">Weather</a></li>
-      <li><a href="#">Data</a></li>
-    </nav>
-    <article>
-      <h2>The Best IoT Weather App</h2>
-      <img src="assets/yellow-umbrella.png" width="75px" alt="article banner">
-    </article>
-    <aside>
-      <ul>
-        <li>
-          <p><strong>Weather Now</strong></p>
-        </li>
-        <li>
-          <!-- <p>Time: <span id="time2"><%= obj.updateTime %></span><br /></p> -->
-          <p>Temperature: <%= obj.temperature %>&deg;<br /></p>
-          <p>Humidity: <%= obj.humidity %>&percnt;<br /></p>
-        </li>
-        <li>
-          <p><strong>Sensor Info:</strong></p>
-        </li>
-        <li>
-          <p>Sensor: <%= obj.sensName %> <br /></p>
-          <p>Id: <%= obj.id %> <br /></p> 
-          <p>Hardware: <%= obj.hardware %> <br /></p> 
-          <p>Location: <%= obj.location %><br /></p>
-        </li>
-        <li>
-          <p><strong>Writted by:</strong></p>
-          <p>Storm Rhyma</p>
-        </li>
-      </ul>
-    </aside>
+    
+<div id="main">
+  <h3>Current Weather:</h3>
+    <h2 class="box" id="temp"><%= obj.temperature %>&deg;C<br /></h2>
+    <h2 class="box" id="humidity"><%= obj.humidity%>&percnt;<br /></h2>
 
+  <div class="sensorinfo">
+    <h3>Device & Sensor information</h3>
+    <h4>DHT11</h4>
+    <img src="assets\dht11.jpg"/>
+    <p>The DHT11 is a commonly used weather sensor, capable of measuring both temperature and humidity. The sensor uses an 8-Bit microcontroller to ouput this info as serial data.</p>
+  </div>
+
+  <div class="sensorinfo" id="rdmod">
+    <h4>Raindrops Module</h4>
+    <img src="assets\esp32.jpg"/>
+    <p>The raindrops module is a smart low-cost rain sensing device. The device consists of two parts, a sensing pad, which senses the presence of water, and a control board, which reads these signals and feeds them to the board.</p>
+  </div>
+
+  <div class="sensorinfo" id="esp32">
+    <h4>ESP32</h4>
+    <img src="assets\rdmod.jpg"/>
+    <p>The ESP32 is a low power, low cost microcontroller with wifi and bluetooth capabilities. It is made by the chinese company Espressif, and is used for a variety of IoT appliccations.</p>
+  </div>
+</div>
+
+
+   
