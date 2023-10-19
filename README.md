@@ -48,15 +48,20 @@ Coloured wires are used for information sending. Green wire collects anolog outp
 
 Website screenshots:
 
+With Rain
 
-### Worklog and Commits
+<img src="public/assets/with_rain.png" height="200"/>
 
-Date | Commit Message | Version
-:-----|:----------------:|:--------:
-25.08.23 | initial setup | 0.1.0
+Without Rain
+
+<img src="public/assets/without_rain.png" height="200"/>
+
 
 ### References
 
-- [Web Page Layouts](https://www.youtube.com/watch?v=3C_22eBWpjg)
-- [JS Native Fetch](https://www.youtube.com/watch?v=MBqS1kYzwTc)
+- [Raindrops Module Information](https://diyi0t.com/rain-sensor-tutorial-for-arduino-and-esp8266/)
+- [How to use Javascript in EJS](https://www.geeksforgeeks.org/how-to-use-ejs-in-javascript/)
+- [CSS Refresher - w3 Schools](https://www.w3schools.com/Css/)
+- [ESP32 Pinout Refrence](https://electropeak.com/learn/full-guide-to-esp32-pinout-reference-what-gpio-pins-should-we-use/#:~:text=The%20ESP32%20microcontroller%20has%20the%20following%20pins%20%3A,UART%20interfaces%2016%20PWM%20channels%202%20I2S%20interfaces)
+- [Jetscholar IoT-Weather](https://github.com/jetscholar/IoT-Weather)
 
