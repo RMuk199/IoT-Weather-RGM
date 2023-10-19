@@ -40,7 +40,8 @@ The purpose of the project, which is an assignment for a school IoT Course, will
 The weather station will be set up using an esp32 and sensors DHT11 and esp32 Raindrops Module. It will use the analog output from the Raindrops module. All interactions with the esp32 will be coded in Aurduino IDE and written in C++, while front end devlopement will be done in VS Code and will be written in Javascript, EJS and CSS. 
 
 ### Screenshots & Wiring
-
+Wiring: 
+![Wiring](public/assets/yellow-umbrella.png)
 
 
 ### Worklog and Commits
