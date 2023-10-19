@@ -41,7 +41,12 @@ The weather station will be set up using an esp32 and sensors DHT11 and esp32 Ra
 
 ### Screenshots & Wiring
 Wiring: 
-![Wiring](public/assets/yellow-umbrella.png)
+
+<img src="public/assets/wiring.jpg" alt="wiring" height="200"/>
+
+Coloured wires are used for information sending. Green wire collects anolog outputs from the Raindrops module and is connected to GPIO pin 32. The DHT11 and blue wire are connected to GPIO pin 33. The tranducer output LED is connected to GPIO pin 12. All grey wires are used for power.
+
+Website screenshots:
 
 
 ### Worklog and Commits
