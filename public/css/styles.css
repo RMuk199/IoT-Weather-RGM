@@ -23,8 +23,8 @@ body {
 
 #humidity {
   position: relative;
-  left: 600px;
-  bottom: 126px;
+  left: 620px;
+  bottom: 340px;
 }
 
 #main{
@@ -40,17 +40,25 @@ body {
 .sensorinfo {
   width: 300px;
   position: relative;
-  bottom: 50px;
+  bottom: 200px;
 }
 
 #rdmod {
   position: relative;
-  bottom: 405px;
+  bottom: 555px;
   left: 350px;
 }
 
 #esp32 {
   position: relative;
-  bottom: 790px;
+  bottom: 940px;
   left: 700px;
+}
+
+#rdrop {
+  width: 175px;
+  position: relative;
+  left: 400px;
+  bottom: 150px;
+
 }

@@ -4,9 +4,21 @@
 
     
 <div id="main">
-  <h3>Current Weather:</h3>
+  <h3>Current Weather: <%= obj.rain%></h3> 
     <h2 class="box" id="temp"><%= obj.temperature %>&deg;C<br /></h2>
-    <h2 class="box" id="humidity"><%= obj.humidity%>&percnt;<br /></h2>
+    <% if (obj.rain !== 4095) { %>
+      <img  id="rdrop" src="assets/raindrops.jpg" alt="raindrops">
+  <% } %>
+  <% if (obj.rain == 4095) { %>
+    <img  id="rdrop" src="assets/cloud.png" alt="raincloud">
+<% } %>
+<% if (obj.rain == 4095) { %>
+    <h2 style="position:relative;bottom:260px;" class="box" id="humidity"><%= obj.humidity%>&percnt;<br /></h2>
+<% } %>
+<% if (obj.rain !== 4095) { %>
+  <h2 class="box" id="humidity"><%= obj.humidity%>&percnt;<br /></h2>
+  <% } %>
+
 
   <div class="sensorinfo">
     <h3>Device & Sensor information</h3>
@@ -17,13 +29,13 @@
 
   <div class="sensorinfo" id="rdmod">
     <h4>Raindrops Module</h4>
-    <img src="assets\esp32.jpg"/>
+    <img src="assets\rdmod.jpg"/>
     <p>The raindrops module is a smart low-cost rain sensing device. The device consists of two parts, a sensing pad, which senses the presence of water, and a control board, which reads these signals and feeds them to the board.</p>
   </div>
 
   <div class="sensorinfo" id="esp32">
     <h4>ESP32</h4>
-    <img src="assets\rdmod.jpg"/>
+    <img src="assets\esp32.jpg"/>
     <p>The ESP32 is a low power, low cost microcontroller with wifi and bluetooth capabilities. It is made by the chinese company Espressif, and is used for a variety of IoT appliccations.</p>
   </div>
 </div>

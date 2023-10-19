@@ -1,4 +1,4 @@
-#define sensor 26
+#define sensor 32
 #define dhtSensor 33
 
 #include <WiFi.h>
@@ -10,8 +10,8 @@
 
 DHT dht(dhtSensor, DHTTYPE);
 
-const char* ssid = "Proxima";
-const char* password = "centauri";
+const char* ssid = "iinet61384D";
+const char* password = "J2Nct8onWn";
 
 #define LISTEN_PORT           80
 
@@ -25,7 +25,10 @@ float t= 0;
 int val = 0;
 
 void setup() {
+
   Serial.begin(9600);
+
+  pinMode(12, OUTPUT);
 
   dht.begin();
 
@@ -71,8 +74,10 @@ void loop() {
 
   if (val == 4095) {
     Serial.println("   Status: Dry");
+    digitalWrite(12, HIGH);
   } else {
     Serial.println("   Status: Wet");
+    digitalWrite(12, LOW);
   }
 
   // Update the humidity and temperature variables
@@ -87,14 +92,6 @@ void loop() {
   
 
   WiFiClient client = server.available();
-
-  if (client.connected()){
-    Serial.print("0");
-  }
-
-  else{
-    Serial.print("1");
-  }
 
   if (!client) {
     delay(1000);

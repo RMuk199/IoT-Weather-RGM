@@ -30,7 +30,7 @@ async function getApiData() {
             hardware: txt.hardware,
             temperature : txt.variables.temperature,
             humidity : txt.variables.humidity,
-            rain : txt.variables.val,
+            rain : txt.variables.water,
             
         }
 
